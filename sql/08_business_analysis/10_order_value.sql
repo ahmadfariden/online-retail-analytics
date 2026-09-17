@@ -1,0 +1,9 @@
+-- ============================================================
+-- Tahap 10: Understanding Order Value
+-- Formula: AOV ~ Basket Size x Average Item Value
+-- Analisis: items/order, distinct products/order, average
+--           selling price, product mix, AOV distribution,
+--           high-AOV orders
+-- DoD: breakdown AOV reconcile ke total locked KPI (Tahap 6)
+-- Status : ⬜ belum mulai
+-- ============================================================

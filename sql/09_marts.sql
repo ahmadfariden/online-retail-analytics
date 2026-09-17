@@ -1,0 +1,18 @@
+-- ============================================================
+-- Tahap 14: Data Mart Design
+-- Tujuan : mart untuk dikonsumsi dashboard. Hanya mengonsumsi
+--          hasil analysis (Tahap 9-13) -- JANGAN bikin definisi
+--          populasi baru di sini.
+-- Marts:
+--   - mart_revenue_daily
+--   - mart_aov_monthly
+--   - mart_basket_aov
+--   - mart_customer_value
+--   - mart_product_performance
+--   - mart_country_performance
+--   - mart_data_quality_summary
+-- Acceptance Criteria: setiap mart harus lolos row-count &
+-- sum-check terhadap sumbernya (hasil Part 5) sebelum dipakai
+-- dashboard. Export final -> data/data_mart/*.parquet (Tahap 15).
+-- Status : ⬜ belum mulai
+-- ============================================================

@@ -1,0 +1,12 @@
+-- ============================================================
+-- Tahap 3: Data Collection
+-- Tujuan : ingest raw CSV (UCI Online Retail) ke DuckDB,
+--          verifikasi schema, initial inventory & provenance.
+-- Aktivitas:
+--   - load data/raw/*.csv -> DuckDB
+--   - schema verification
+--   - initial row/column inventory
+--   - catat provenance (sumber, tanggal download, versi dataset)
+-- Output : ingestion ke DuckDB berhasil, schema terverifikasi
+-- Status : ⬜ belum mulai
+-- ============================================================

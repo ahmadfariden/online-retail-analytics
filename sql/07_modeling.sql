@@ -1,0 +1,12 @@
+-- ============================================================
+-- Tahap 8: Data Modeling
+-- Tujuan : bangun star schema yang merepresentasikan dataset
+--          hasil Profiled -> Cleaned -> Validated -> KPI Locked.
+--          Modeling TIDAK mengubah analytical population.
+-- Dimensions: Dim_Product, Dim_Customer, Dim_Country, Dim_Date
+-- Facts     : Fact_Order_Lines (grain: 1 retained transaction line)
+--             Fact_Orders      (grain: 1 Invoice)
+-- Acceptance Criteria: row count Fact = row count analytical
+-- population hasil Tahap 6 (reconciliation check ulang).
+-- Status : ⬜ belum mulai
+-- ============================================================

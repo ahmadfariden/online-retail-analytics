@@ -1,0 +1,22 @@
+-- ============================================================
+-- Tahap 7: Exploratory Data Analysis (EDA)
+-- Tujuan : memahami pola utama dataset -- BUKAN bikin dashboard.
+-- Kategori eksplorasi (masing-masing min. 1 finding + 1 hipotesis):
+--   - Revenue   : distribusi, by month/quarter, concentration, trend
+--   - Order     : distribusi order & order revenue, basket size,
+--                 items per order
+--   - AOV       : mean/median/P25/P75/P90/P95/P99, skewness,
+--                 high-AOV orders
+--   - Customer  : distribusi, order frequency, one-time vs repeat,
+--                 revenue concentration
+--   - Product   : distribusi, revenue concentration, volume
+--                 distribution, long-tail behavior
+--   - Country   : revenue/orders/customer distribution,
+--                 UK concentration, small-market behavior
+--   - Time      : pola bulanan/kuartalan, day-of-week, hour,
+--                 seasonality
+--   - Outlier   : high-value orders, extreme qty/price/customer value
+-- Batasan (EDA Governance): TIDAK boleh ubah definisi KPI/population,
+-- TIDAK boleh drop data tanpa justifikasi, TIDAK boleh kesimpulan kausal.
+-- Status : ⬜ belum mulai
+-- ============================================================

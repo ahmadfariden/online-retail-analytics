@@ -1,0 +1,18 @@
+-- ============================================================
+-- Tahap 4: Data Profiling
+-- Tujuan : memahami struktur dataset & mengukur kualitas data.
+--          TIDAK melakukan cleaning final -- hanya menjawab
+--          "apa masalah yang ada di data?"
+-- Aktivitas:
+--   - row count, schema check
+--   - missing Customer ID
+--   - exact duplicates, duplicate product lines
+--   - cancellation invoices
+--   - negative / zero / extreme Quantity
+--   - zero / negative / extreme Price
+--   - non-product StockCode
+--   - country concentration
+--   - exact cardinality
+-- Output : 03_profiling_summary.parquet, docs/profiling_findings.md
+-- Status : ⬜ belum mulai
+-- ============================================================

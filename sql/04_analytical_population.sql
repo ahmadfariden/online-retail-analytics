@@ -1,0 +1,18 @@
+-- ============================================================
+-- Tahap 5: Data Cleaning & Data Treatment
+-- Tujuan : "setelah tahu masalah data, bagaimana ditangani?"
+--          + definisikan analytical population.
+-- Aktivitas:
+--   - classify cancellation invoice (sales vs cancellation/return)
+--   - investigate & treat negative Quantity
+--   - investigate Price = 0 / negatif / ekstrem
+--   - handle exact & business-level duplicate
+--   - classify physical product vs service/fee/adjustment
+--     (flag is_special_stockcode)
+--   - set data types (InvoiceDate -> TIMESTAMP, dst.)
+--   - definisikan populasi: Transaction/Revenue, Customer,
+--     Return/Cancellation, Non-Product Population
+-- Output : 04_online_retail_clean.parquet
+-- Dok    : docs/assumptions_and_limitations.md
+-- Status : ⬜ belum mulai
+-- ============================================================

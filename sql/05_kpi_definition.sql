@@ -1,0 +1,21 @@
+-- ============================================================
+-- Tahap 6: Data Validation & KPI Lock
+-- Tujuan : pastikan dataset hasil cleaning valid & KPI konsisten.
+-- Aktivitas:
+--   - structural validation (row count, distinct Invoice/
+--     StockCode/Customer ID reconciliation, null reconciliation)
+--   - business validation (sales, cancellation, customer,
+--     non-product population)
+--   - Revenue Validation: Line Revenue = Qty x Price,
+--     Order Revenue = SUM(Line Revenue), reconcile ke Total Revenue
+--   - Order Validation : Orders = COUNT(DISTINCT Invoice) dari
+--     valid sales population
+--   - AOV Validation   : AOV = Revenue / Orders
+--   - Basket Validation: Basket Size = Total Qty / Orders
+--   - KPI Definition Lock (Revenue/Order/AOV/Basket/customer metric)
+-- Output : 05_validation_summary.parquet, final KPI definitions
+-- Dok    : docs/methodology.md
+-- 🔒 Setelah tahap ini, population + KPI LOCKED -- perubahan
+--    definisi wajib lewat Revision Log di roadmap.md.
+-- Status : ⬜ belum mulai
+-- ============================================================

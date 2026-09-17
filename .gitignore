@@ -1,0 +1,33 @@
+# === Raw & processed data (regenerable dari sql/, tidak perlu di-commit) ===
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# === Local DuckDB database file ===
+db/*.duckdb
+db/*.db
+!db/.gitkeep
+
+# === Power BI local cache (file .pbix tetap di-commit) ===
+*.pbix.bak
+~$*.pbix
+
+# === OS / Editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# === Python (kalau ada helper script) ===
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Catatan:
+# - data/data_mart/*.parquet SENGAJA tidak di-ignore karena jadi bukti
+#   reproducibility & portfolio (Tahap 15). Kalau ukurannya terlalu besar,
+#   pindahkan baris "data/data_mart/*" + "!data/data_mart/.gitkeep" ke atas.
+# - outputs/ (screenshots, dashboard export) juga tidak di-ignore karena
+#   dipakai untuk README & portfolio publication (Tahap 19).
