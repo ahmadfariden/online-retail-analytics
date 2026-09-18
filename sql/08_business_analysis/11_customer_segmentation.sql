@@ -1,9 +1,0 @@
--- ============================================================
--- Tahap 11: Customer Segmentation
--- Scope: Customer ID valid only
--- Analisis: RFM, actual distribution-based thresholds, segment
---           reconciliation, one-time vs repeat, customer revenue
---           concentration
--- DoD: segment reconcile ke Customer Population (Tahap 5)
--- Status : ⬜ belum mulai
--- ============================================================

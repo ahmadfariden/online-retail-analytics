@@ -1,9 +1,0 @@
--- ============================================================
--- Tahap 9: Revenue & Order Decomposition
--- Formula: Revenue = Orders x AOV
--- Analisis: revenue trend, orders trend, AOV trend, customers,
---           basket size, volume-driven vs value-driven change,
---           seasonal pattern
--- DoD: breakdown reconcile ke total locked KPI (Tahap 6)
--- Status : ⬜ belum mulai
--- ============================================================
