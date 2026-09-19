@@ -5,6 +5,8 @@ data/processed/*
 !data/processed/.gitkeep
 
 # === Local DuckDB database file ===
+duckdb.exe
+retail.duckdb
 db/*.duckdb
 db/*.db
 !db/.gitkeep
@@ -31,3 +33,6 @@ venv/
 #   pindahkan baris "data/data_mart/*" + "!data/data_mart/.gitkeep" ke atas.
 # - outputs/ (screenshots, dashboard export) juga tidak di-ignore karena
 #   dipakai untuk README & portfolio publication (Tahap 19).
+
+data/data_mart/
+retail.duckdb.wal
