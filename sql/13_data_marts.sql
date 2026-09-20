@@ -41,16 +41,28 @@ ORDER BY d.full_date;
 -- -----------------------------------------------------------------------------
 -- Sumber: v_order_value_monthly (Tahap 10, sudah reconcile).
 -- SENGAJA disimpan UNROUNDED -- pembulatan untuk display jadi tanggung
--- jawab layer dashboard (Tahap 16), bukan mart. Ini mencegah "penny
--- rounding problem" (rounding per baris lalu di-SUM) yang berulang kali
--- ditemukan di Tahap 8-11.
+-- jawab layer dashboard (Tahap 16), bukan mart.
+-- Volume/AOV/Interaction Effect dihitung di SQL (logika sama seperti Tahap 9),
+-- BUKAN via DAX time-intelligence di Power BI -- DATEADD() rawan blank kalau
+-- axis chart pakai kolom teks (Year_Month) alih-alih kolom date asli.
 CREATE OR REPLACE TABLE mart_aov_monthly AS
+WITH m AS (
+    SELECT
+        year, month, year_month, revenue, orders, aov,
+        LAG(revenue) OVER (ORDER BY year, month)     AS prev_revenue,
+        LAG(orders)  OVER (ORDER BY year, month)     AS prev_orders,
+        LAG(aov)     OVER (ORDER BY year, month)     AS prev_aov,
+        LAG(revenue, 12) OVER (ORDER BY year, month) AS revenue_py   -- 12 bulan lalu (year-over-year)
+    FROM v_order_value_monthly
+)
 SELECT
-    year, month, year_month,
-    revenue,
-    orders,
-    aov
-FROM v_order_value_monthly
+    year, month, year_month, revenue, orders, aov,
+    ROUND(100.0 * (revenue - prev_revenue) / NULLIF(prev_revenue, 0), 2) AS mom_pct_change,
+    ROUND(100.0 * (revenue - revenue_py) / NULLIF(revenue_py, 0), 2)     AS yoy_pct_change,
+    (orders - prev_orders) * prev_aov                    AS volume_effect,
+    prev_orders * (aov - prev_aov)                       AS aov_effect,
+    (orders - prev_orders) * (aov - prev_aov)            AS interaction_effect
+FROM m
 ORDER BY year, month;
 
 
@@ -58,16 +70,30 @@ ORDER BY year, month;
 -- 3. MART_BASKET_AOV
 -- -----------------------------------------------------------------------------
 -- Sumber: v_order_value_monthly (Tahap 10) -- fokus basket/item-value.
+-- basket_effect/item_value_effect/interaction_effect dihitung di SQL (logika
+-- sama seperti dekomposisi Tahap 10, month-over-month), BUKAN via DAX --
+-- pelajaran dari mart_aov_monthly.
 CREATE OR REPLACE TABLE mart_basket_aov AS
+WITH m AS (
+    SELECT
+        year, month, year_month, basket_size, avg_item_value, aov,
+        items_per_order, distinct_products_per_order,
+        LAG(basket_size)     OVER (ORDER BY year, month) AS prev_basket_size,
+        LAG(avg_item_value)  OVER (ORDER BY year, month) AS prev_avg_item_value
+    FROM v_order_value_monthly
+)
 SELECT
     year_month,
-    ROUND(basket_size, 2)              AS basket_size,
-    ROUND(avg_item_value, 4)           AS avg_item_value,
-    ROUND(items_per_order, 2)          AS items_per_order,
-    ROUND(distinct_products_per_order, 2) AS distinct_products_per_order,
-    ROUND(aov, 2)                      AS aov
-FROM v_order_value_monthly
-ORDER BY year_month;
+    ROUND(basket_size, 2)                  AS basket_size,
+    ROUND(avg_item_value, 4)               AS avg_item_value,
+    ROUND(items_per_order, 2)              AS items_per_order,
+    ROUND(distinct_products_per_order, 2)  AS distinct_products_per_order,
+    ROUND(aov, 2)                          AS aov,
+    (basket_size - prev_basket_size) * prev_avg_item_value       AS basket_effect,
+    prev_basket_size * (avg_item_value - prev_avg_item_value)    AS item_value_effect,
+    (basket_size - prev_basket_size) * (avg_item_value - prev_avg_item_value) AS interaction_effect
+FROM m
+ORDER BY year, month;
 
 
 -- -----------------------------------------------------------------------------
